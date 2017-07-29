@@ -78,7 +78,7 @@ class eazyPageScroller implements description{
 
             let pageNum = event.target.dataset.pageNum;
             this.transit = true;
-            this.changePage(pageNum);
+            this.changePage(+pageNum);
             setTimeout(() => {
                 this.transit = false;
             }, 1000);
