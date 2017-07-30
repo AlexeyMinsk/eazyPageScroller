@@ -3,7 +3,6 @@ class eazyPageScroller {
         this.pageCounter = 0;
         this.transit = false;
         this.maxPage = opt.maxPage;
-        this.slider = opt.slider;
     }
     init() {
         this.fixHeight();
@@ -11,10 +10,6 @@ class eazyPageScroller {
     }
     ;
     addHandlers() {
-        let slider = document.getElementsByClassName('slider')[0];
-        let shift = slider.children[0].clientWidth;
-        let maxShift = (slider.children.length - 1) * shift;
-        let sliderShift = 0;
         let arrow = document.body.querySelector('.fa-arrow-down');
         arrow.addEventListener('click', arrowClick.bind(this));
         arrow = document.body.querySelector('.fa-arrow-up');
@@ -22,12 +17,6 @@ class eazyPageScroller {
         document.addEventListener('wheel', wheelAndKey.bind(this));
         document.addEventListener('keydown', wheelAndKey.bind(this));
         document.addEventListener('click', clickNav.bind(this));
-        if (this.slider) {
-            let arrow = document.body.querySelector('.fa-chevron-circle-left');
-            arrow.addEventListener('click', sliderClick.bind(this));
-            arrow = document.body.querySelector('.fa-chevron-circle-right');
-            arrow.addEventListener('click', sliderClick.bind(this));
-        }
         function arrowClick(event) {
             if (event.target.classList.contains("fa-arrow-down"))
                 this.changePage(this.pageCounter + 1);
@@ -62,17 +51,6 @@ class eazyPageScroller {
                 this.transit = false;
             }, 1000);
         }
-        function sliderClick() {
-            if (event.target.classList.contains("fa-chevron-circle-left"))
-                sliderShift -= shift;
-            else
-                sliderShift += shift;
-            if (sliderShift > maxShift)
-                sliderShift = maxShift;
-            else if (sliderShift < 0)
-                sliderShift = 0;
-            slider.style.transform = `translateX(-${sliderShift}px)`;
-        }
     }
     fixHeight() {
         let body = document.body;
@@ -101,6 +79,4 @@ class eazyPageScroller {
         }, 1000);
     }
 }
-let scroller = new eazyPageScroller({ maxPage: 3, slider: true });
-document.addEventListener("DOMContentLoaded", scroller.init.bind(scroller));
 //# sourceMappingURL=eazyPageScroller.js.map
