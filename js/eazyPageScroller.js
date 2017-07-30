@@ -56,9 +56,9 @@ class eazyPageScroller {
         let body = document.body;
         body.style.overflow = "hidden";
         body.style.height = document.documentElement.clientHeight + 'px';
-        body.onresize = () => {
+        body.addEventListener('resize', () => {
             document.body.style.height = document.documentElement.clientHeight + 'px';
-        };
+        });
     }
     changePage(nextPage) {
         let parent = document.querySelector('.parent');

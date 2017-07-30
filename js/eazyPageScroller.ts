@@ -25,8 +25,7 @@ class eazyPageScroller implements description{
         arrow.addEventListener('click', arrowClick.bind(this));
         arrow = document.body.querySelector('.fa-arrow-up');
         arrow.addEventListener('click', arrowClick.bind(this));
-
-
+        
         document.addEventListener('wheel', wheelAndKey.bind(this));
         document.addEventListener('keydown', wheelAndKey.bind(this));
         document.addEventListener('click', clickNav.bind(this));
@@ -75,13 +74,13 @@ class eazyPageScroller implements description{
         body.style.overflow = "hidden";
         body.style.height = document.documentElement.clientHeight + 'px';
 
-        body.onresize = () => {
+        body.addEventListener('resize', ()=>{
             document.body.style.height = document.documentElement.clientHeight + 'px';
-        }
+        })
     }
 
     changePage(nextPage) {
-        let parent = document.querySelector('.parent');
+        let parent = <HTMLElement>document.querySelector('.parent');
 
         if(nextPage > this.maxPage)
             nextPage = this.maxPage;
@@ -92,14 +91,14 @@ class eazyPageScroller implements description{
 
         setTimeout( ()=> {
             if(this.pageCounter == 0)
-                document.querySelector('.fa-arrow-up').style.display = 'none';
+                (<HTMLElement>document.querySelector('.fa-arrow-up')).style.display = 'none';
             else
-                document.querySelector('.fa-arrow-up').style.display = 'inline-block';
+                (<HTMLElement>document.querySelector('.fa-arrow-up')).style.display = 'inline-block';
 
             if(this.maxPage == this.pageCounter)
-                document.querySelector('.fa-arrow-down').style.display = 'none';
+                (<HTMLElement>document.querySelector('.fa-arrow-down')).style.display = 'none';
             else
-                document.querySelector('.fa-arrow-down').style.display = 'inline-block';
+                (<HTMLElement>document.querySelector('.fa-arrow-down')).style.display = 'inline-block';
         }, 1000);
     }
 }
